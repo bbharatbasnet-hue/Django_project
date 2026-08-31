@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mt-5">
+  <h2 class="alert alert-primary text-center">EDIT LEAVE APPLICATION</h2>
+
+  <div class="card shadow p-4">
+    <form method="POST">
+      {% csrf_token %} {{ form.non_field_errors }}
+
+      <div class="mb-3">
+        <label class="form-label"> Leave Type </label>
+        {{ form.leave_type }} {{ form.leave_type.errors }}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> Start Date </label>
+        {{ form.start_date }} {{ form.start_date.errors }}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> End Date </label>
+        {{ form.end_date }} {{ form.end_date.errors }}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> Reason </label>
+        {{ form.reason }} {{ form.reason.errors }}
+      </div>
+
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{% url 'leave_detail' leave.pk %}" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

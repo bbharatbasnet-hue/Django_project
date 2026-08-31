@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mt-5">
+  <h2 class="alert alert-primary text-center">STUDENT LEAVE FORM</h2>
+
+  <div class="card shadow p-4">
+    <form method="POST">
+      {% csrf_token %} {{ form.non_field_errors }}
+
+      <div class="mb-3">
+        <label class="form-label"> Leave Type </label>
+
+        {{ form.leave_type }} {{ form.leave_type.errors }}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> Start Date </label>
+
+        {{ form.start_date }} {{ form.start_date.errors }}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> End Date </label>
+
+        {{ form.end_date }} {{ form.end_date.errors }}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> Reason </label>
+
+        {{ form.reason }} {{ form.reason.errors }}
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Apply Leave</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

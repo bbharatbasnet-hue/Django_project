@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mt-5">
+  <h2 class="alert alert-success text-center">MY LEAVE APPLICATIONS</h2>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Leave Type</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for leave in leaves %}
+
+      <tr>
+        <td>{{ leave.leave_type }}</td>
+
+        <td>{{ leave.start_date }}</td>
+
+        <td>{{ leave.end_date }}</td>
+
+        <td>{{ leave.reason }}</td>
+
+        <td>
+          {% if leave.status == "Pending" %}
+          <span class="badge bg-warning"> Pending </span>
+
+          {% elif leave.status == "Approved" %}
+          <span class="badge bg-success"> Approved </span>
+
+          {% else %}
+          <span class="badge bg-danger"> Rejected </span>
+          {% endif %}
+        </td>
+
+        <td class="d-flex gap-1">
+          <a href="{% url 'leave_detail' leave.pk %}" class="btn btn-sm btn-outline-info">View</a>
+          {% if leave.status == "Pending" %}
+          <a href="{% url 'leave_edit' leave.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+          <a href="{% url 'leave_delete' leave.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+          {% endif %}
+        </td>
+      </tr>
+
+      {% empty %}
+
+      <tr>
+        <td colspan="6" class="text-center">No leave applications found.</td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'apply_leave' %}" class="btn btn-primary">
+    Apply New Leave
+  </a>
+</div>
+
+{% endblock %}

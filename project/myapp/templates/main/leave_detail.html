@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mt-5">
+  <h2 class="alert alert-primary text-center">LEAVE APPLICATION DETAILS</h2>
+
+  <div class="card shadow p-4">
+    <table class="table table-borderless">
+      <tr>
+        <th>Leave Type</th>
+        <td>{{ leave.leave_type }}</td>
+      </tr>
+      <tr>
+        <th>Start Date</th>
+        <td>{{ leave.start_date }}</td>
+      </tr>
+      <tr>
+        <th>End Date</th>
+        <td>{{ leave.end_date }}</td>
+      </tr>
+      <tr>
+        <th>Reason</th>
+        <td>{{ leave.reason }}</td>
+      </tr>
+      <tr>
+        <th>Status</th>
+        <td>
+          {% if leave.status == "Pending" %}
+          <span class="badge bg-warning">Pending</span>
+          {% elif leave.status == "Approved" %}
+          <span class="badge bg-success">Approved</span>
+          {% else %}
+          <span class="badge bg-danger">Rejected</span>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>Applied On</th>
+        <td>{{ leave.created_at }}</td>
+      </tr>
+    </table>
+
+    <div class="d-flex gap-2">
+      {% if leave.status == "Pending" %}
+      <a href="{% url 'leave_edit' leave.pk %}" class="btn btn-outline-primary">Edit</a>
+      <a href="{% url 'leave_delete' leave.pk %}" class="btn btn-outline-danger">Delete</a>
+      {% endif %}
+      <a href="{% url 'leave_list' %}" class="btn btn-secondary">Back to My Leaves</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

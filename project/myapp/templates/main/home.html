@@ -1,0 +1,120 @@
+{% extends 'base.html' %} {% block content%}{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<!-- ================= Hero Section ================= -->
+<div class="bg-primary text-white text-center py-5">
+  <div class="container">
+    <h1 class="display-5 fw-bold">
+      Welcome to Junior Cambridge Secondary School
+    </h1>
+    <p class="lead mb-4">
+      Quality Education, Discipline and Excellence — building a better future
+      for every student.
+    </p>
+
+    <div class="d-flex justify-content-center gap-2 flex-wrap">
+      <a href="{% url 'form' %}" class="btn btn-light btn-lg"
+        >Apply for Admission</a
+      >
+
+      {% if user.is_authenticated %}
+      <a href="{% url 'apply_leave' %}" class="btn btn-outline-light btn-lg"
+        >Apply for Leave</a
+      >
+      {% else %}
+      <a href="{% url 'register' %}" class="btn btn-outline-light btn-lg"
+        >Student / Staff Login</a
+      >
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- ================= Features Section ================= -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">What We Offer</h2>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm text-center p-3">
+        <div class="fs-1 mb-2">📚</div>
+        <h5>Quality Curriculum</h5>
+        <p class="text-muted">
+          A well-rounded academic program designed to help every student reach
+          their full potential.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm text-center p-3">
+        <div class="fs-1 mb-2">🧑‍🏫</div>
+        <h5>Experienced Teachers</h5>
+        <p class="text-muted">
+          Dedicated and qualified staff committed to guiding students toward
+          academic and personal growth.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm text-center p-3">
+        <div class="fs-1 mb-2">🗓️</div>
+        <h5>Online Leave Management</h5>
+        <p class="text-muted">
+          Students can apply for leave, track approval status, and get instant
+          email confirmations — all online.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= Leave System Callout ================= -->
+<div class="bg-light py-5">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-md-7">
+        <h3>Student Leave Management System</h3>
+        <p class="text-muted">
+          Skip the paperwork. Log in to submit a leave request, view its status
+          (Pending / Approved / Rejected), edit or cancel it while it's still
+          pending, and receive an email notification at every step.
+        </p>
+
+        {% if user.is_authenticated %}
+        <a href="{% url 'leave_list' %}" class="btn btn-primary"
+          >View My Leaves</a
+        >
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-primary"
+          >Login to Get Started</a
+        >
+        {% endif %}
+      </div>
+
+      <div class="col-md-5 text-center">
+        <div class="display-1">📝✅</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= Quick Info Strip ================= -->
+<div class="container my-5">
+  <div class="row text-center g-4">
+    <div class="col-md-4">
+      <h2 class="fw-bold">A+</h2>
+      <p class="text-muted">Academic Excellence</p>
+    </div>
+    <div class="col-md-4">
+      <h2 class="fw-bold">Grade 1–10</h2>
+      <p class="text-muted">Classes Offered</p>
+    </div>
+    <div class="col-md-4">
+      <h2 class="fw-bold">100%</h2>
+      <p class="text-muted">Online Admission & Leave Process</p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
