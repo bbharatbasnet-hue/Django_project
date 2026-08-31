@@ -205,6 +205,8 @@ class Contact(models.Model):
     contact_email = models.EmailField()
     message = models.TextField()
 
-
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+    
     def __str__(self):
         return f"{self.user.username} - {self.leave_type} ({self.status})"
